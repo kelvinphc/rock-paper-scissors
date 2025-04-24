@@ -19,4 +19,14 @@ function getComputerChoice () {
     }
 }
 
-console.log(getComputerChoice());
+function getHumanChoice () {
+    const humanChoice = prompt("Enter your choice: rock, paper, or scissors").toLowerCase();
+    if (humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors") {
+        return humanChoice;
+    } else {
+        alert("Invalid choice. Please try again.");
+        return getHumanChoice();
+    }
+}
+
+console.log(getHumanChoice ())
