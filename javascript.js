@@ -15,7 +15,7 @@ function getComputerChoice () {
             break;
         case 3:
             return "scissors";
-            break
+            break;
     }
 }
 
@@ -31,3 +31,23 @@ function getHumanChoice () {
 
 let humanScore = 0;
 let computerScore = 0;
+
+function playRound (humanChoice, computerChoice) {
+    console.log("You chose " + humanChoice + ".");
+    console.log("Computer chose " + computerChoice + ".");
+    if (humanChoice === computerChoice) {
+        return "It's a tie!";
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        humanScore++;
+        return "You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + ".";
+    } else {
+        computerScore++;
+        return "You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".";
+    }
+}
+
+console.log(playRound(getHumanChoice(), getComputerChoice()));
