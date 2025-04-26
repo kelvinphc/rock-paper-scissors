@@ -50,4 +50,16 @@ function playRound (humanChoice, computerChoice) {
     }
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()));
+function playGame () {
+    console.log(playRound(getHumanChoice(), getComputerChoice()));
+    console.log("Current Score - You: " + humanScore + ", Computer: " + computerScore);
+    if (humanScore === 3) {
+        console.log("Victory!");
+    } else if (computerScore === 3) {
+        console.log("Defeat!");
+    } else {
+        playGame();
+    }
+}
+
+playGame();
