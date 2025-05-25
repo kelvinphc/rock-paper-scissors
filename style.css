@@ -1,0 +1,35 @@
+body, button {
+    font-size: 24px;
+}
+
+#header {
+    text-align: center;
+    margin: 24px 0;
+}
+
+#choose-one {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+    gap: 24px;
+}
+
+#choice-container {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+    gap: 100px;
+}
+
+#results, #scoreboard {
+    text-align: center;
+    margin: 24px 0;
+}
+
+#endGameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px 0;
+    gap: 24px;
+}

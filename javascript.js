@@ -36,11 +36,15 @@ function playRound (humanChoice, computerChoice) {
         roundResult = "You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".";
     };
 
-    results.textContent = `You chose ${humanChoice}.
-    Computer chose ${computerChoice}.
-    ${roundResult}`;
+    humanChoiceDiv.textContent = `You: 
+    ${humanChoice}`;
 
-    score.textContent = `Current Score - You: ${humanScore}, Computer: ${computerScore}`;
+    computerChoiceDiv.textContent = `Computer: 
+    ${computerChoice}`;
+
+    results.textContent = `${roundResult}`;
+
+    scoreboard.textContent = `Current Score - You: ${humanScore}, Computer: ${computerScore}`;
 
     if (humanScore === 5 || computerScore === 5) {
         endGame();
@@ -52,6 +56,8 @@ function endGame() {
     document.querySelector("#paper").disabled = true;
     document.querySelector("#scissors").disabled = true;
 
+    const endGameContainer = document.createElement("div");
+    endGameContainer.setAttribute("id", "endGameContainer");
     const endMessage = document.createElement("div");
     endMessage.setAttribute("id", "endMessage");
     const resetButton = document.createElement("button");
@@ -63,41 +69,47 @@ function endGame() {
         endMessage.textContent = "Defeat!";
     };
 
-    document.body.appendChild(endMessage);
+    document.body.appendChild(endGameContainer);
+
+    endGameContainer.appendChild(endMessage);
 
     resetButton.textContent = "Play Again";
     resetButton.addEventListener("click", resetGame);
 
-    document.body.appendChild(resetButton);
+    endGameContainer.appendChild(resetButton);
 };
 
 function resetGame() {
     location.reload();
 };
 
-const container = document.querySelector("#container")
+const choiceButtons = document.querySelectorAll(".choice-button");
+const humanChoiceDiv = document.querySelector("#human-choice");
+const computerChoiceDiv = document.querySelector("#computer-choice");
 const results = document.querySelector("#results");
-const score = document.querySelector("#score");
+const scoreboard = document.querySelector("#scoreboard");
 
 let humanScore = 0;
 let computerScore = 0;
 
-container.addEventListener("click", (e) => {
-    const target = e.target;
-    let humanChoice
+choiceButtons.forEach((choiceButton) => {
+    choiceButton.addEventListener("click", (e) => {
+        const target = e.target;
+        let humanChoice;
 
-    switch(target.id) {
-        case "rock":
-            humanChoice = "rock";
-            break;
-        case "paper":
-            humanChoice = "paper";
-            break;
-        case "scissors":
-            humanChoice = "scissors";
-            break;
-    };
+        switch(target.id) {
+            case "rock":
+                humanChoice = "rock";
+                break;
+            case "paper":
+                humanChoice = "paper";
+                break;
+            case "scissors":
+                humanChoice = "scissors";
+                break;
+        };
 
-    const computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
+        const computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+    });
 });
